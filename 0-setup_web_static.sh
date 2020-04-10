@@ -1,25 +1,24 @@
 #!/usr/bin/env bash
-# This script configure a server with some specifications
+# Write a Bash script that sets up your web servers for the deployment of web_static. It must
 
+# Update upgrade and install
+sudo apt-get -y update
+sudo apt-get -y upgrade
+sudo apt-get -y install nginx
 
-# Setup file directory system for webstatic files
-sudo mkdir -p /data/web_static/shared/
-sudo mkdir -p /data/web_static/releases/test/
+# make dirs
+sudo mkdir -p /data/web_static/releases/test /data/web_static/shared
 
-sudo echo "<h1>Test, it works!<h1>" | sudo tee /data/web_static/releases/test/index.html
-sudo ln -sf /data/web_static/releases/test/ /data/web_static/current 
+# create page
+echo "This is a test" | sudo tee /data/web_static/releases/test/index.html
 
-chown -R ubuntu /data/
-chgrp -R ubuntu /data/
+# link files
+sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
 
-# Standar 404 message
-sudo mkdir -p /var/www/html/
-sudo echo "Holberton School for the win!" | sudo tee /var/www/html/index.html
+# give privs
+sudo chown -hR ubuntu:ubuntu /data/
 
-# Install nginx web server
-sudo apt-get update
-sudo apt-get install -y nginx
-
+# write default
 printf %s "server {
     listen 80 default_server;
     listen [::]:80 default_server;
@@ -40,5 +39,5 @@ printf %s "server {
     }
 }" > /etc/nginx/sites-available/default
 
-sudo service nginx restart
-
+# start service
+sudo service nginx start
