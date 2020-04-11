@@ -10,8 +10,12 @@ from os.path import exists
 
 env.hosts = ['35.227.104.194', '52.201.243.73']
 
-if exists(archive_path) is False:
-    return False
+
+def do_deploy(archive_path):
+    """ simple func """
+
+    if exists(archive_path) is False:
+        return False
 
     try:
         # split
