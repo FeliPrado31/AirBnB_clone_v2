@@ -5,7 +5,7 @@ that distributes an archive to your web servers
 using the function do_deploy:
 """
 
-from fabric.api import put, run, env
+from fabric.api import put, sudo, env
 from os.path import exists
 
 env.hosts = ['35.227.104.194', '52.201.243.73']
@@ -25,13 +25,13 @@ def do_deploy(archive_path):
         path = "/data/web_static/releases/"
         # call the commands
         put(archive_path, '/tmp/')
-        run('mkdir -p {}{}/'.format(path, name))
-        run('tar -xzf /tmp/{} -C {}{}/'.format(f, path, name))
-        run('rm /tmp/{}'.format(f))
-        run('mv {0}{1}/web_static/* {0}{1}/'.format(path, name))
-        run('rm -rf {}{}/web_static'.format(path, name))
-        run('rm -rf /data/web_static/current')
-        run('ln -s {}{}/ /data/web_static/current'.format(path, name))
+        sudo('mkdir -p {}{}/'.format(path, name))
+        sudo('tar -xzf /tmp/{} -C {}{}/'.format(f, path, name))
+        sudo('rm /tmp/{}'.format(f))
+        sudo('mv {0}{1}/web_static/* {0}{1}/'.format(path, name))
+        sudo('rm -rf {}{}/web_static'.format(path, name))
+        sudo('rm -rf /data/web_static/current')
+        sudo('ln -s {}{}/ /data/web_static/current'.format(path, name))
         return True
     except:
         return False
