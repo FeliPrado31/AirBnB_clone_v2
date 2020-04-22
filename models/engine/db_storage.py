@@ -44,6 +44,7 @@ class DBStorage:
                 for res in result:
                     _objects.append(res)
         else:
+            cls = eval(cls) if isinstance(cls, str) else cls
             _objects = self.__session.query(cls).all()
         for obj in _objects:
             key = type(obj).__name__ + "." + str(obj.id)
@@ -76,5 +77,6 @@ class DBStorage:
         self.__session = Session()
 
     def close(self):
-        """close session"""
+        """
+        """
         self.__session.close()
