@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <link rel="stylesheet" type="text/css" href="../static/styles/style.css">
     <link rel="stylesheet" type="text/css" href="../static/styles/4-common.css">
     <link rel="stylesheet" type="text/css" href="../static/styles/3-header.css">
@@ -8,47 +9,49 @@
     <link rel="stylesheet" type="text/css" href="../static/styles/6-filters.css">
     <link rel="icon" href="../static/images/icon.png" />
     <title>HBnB</title>
-  </head>
-  <body>
+</head>
+
+<body>
     <header>
-      <div class="logo"></div>
+        <div class="logo"></div>
     </header>
     <div class="container">
-      <section class="filters">
-	<div class="locations">
-	  <H3>States</H3>
-	  <BR> <BR>
-	  <div class="popover">
-	    <UL>
-	      {% for state in states.values() | sort(attribute="name") %}
-	      <LI>
-		<H2>{{ state.name }}</H2>
-		<UL>
-		  {% for city in state.cities | sort(attribute="name") %}
-		  <LI>{{ city.name }}</LI>
-		  {% endfor %}
-		</UL>
-	      </LI>
-	      {% endfor %}
-	    </UL>
-	 </div>
-	</div>
-	<div class="amenities">
-	  <H3>Amenities</H3>
-	  <BR> <BR>
-	  <div class="popover">
-	    <UL>
-	      {% for amenity in amenities.values() | sort(attribute="name") %}
-	      <LI>{{ amenity.name }}</LI>
-	      {% endfor %}
-	    </UL>
-	  </div>
-	</div>
-	<button type="button">Search</button>
-      </section>
+        <section class="filters">
+            <div class="locations">
+                <H3>States</H3>
+                <BR> <BR>
+                <div class="popover">
+                    <UL>
+                        {% for state in states.values() | sort(attribute="name") %}
+                        <LI>
+                            <H2>{{ state.name }}</H2>
+                            <UL>
+                                {% for city in state.cities | sort(attribute="name") %}
+                                <LI>{{ city.name }}</LI>
+                                {% endfor %}
+                            </UL>
+                        </LI>
+                        {% endfor %}
+                    </UL>
+                </div>
+            </div>
+            <div class="amenities">
+                <H3>Amenities</H3>
+                <BR> <BR>
+                <div class="popover">
+                    <UL>
+                        {% for amenity in amenities.values() | sort(attribute="name") %}
+                        <LI>{{ amenity.name }}</LI>
+                        {% endfor %}
+                    </UL>
+                </div>
+            </div>
+            <button type="button">Search</button>
+        </section>
     </div>
     <footer>
-      <p>Holberton School</p>
+        <p>Holberton School</p>
     </footer>
-  </body>
+</body>
+
 </html>
